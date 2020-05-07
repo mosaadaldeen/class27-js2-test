@@ -14,6 +14,15 @@
     'Noer is 28 and works as an Education Director'
 */
 
+function logObj(obj) {
+    for (let i = 0; i < obj.length; i++) {
+        return `${obj[i]} is ${obj[i]} and works as an ${obj[i]}`;
+    }
+}
+let objectInfo = { name: 'Noer', age: 28, job: 'Education Directo' };
+console.log(logObj(objectInfo));
+
+
 /* 2. Create a function, named logNumbers, that:
       - Takes 2 arguments: a start number and an end number
       - Has a loop that starts from the start number and ends until the end number
@@ -39,6 +48,20 @@
       Use the following values: 1 (start number) and 100 (end number)
 */
 
+function logNumbers(start, end) {
+    for (let index = start; index <= end; index++) {
+        console.log(index);
+        if (index % 3 === 0) {
+            console.log('Fizz');
+        } else if (index % 5 === 0) {
+            console.log('Buzz');
+        } else if (index % 5 === 0 && index % 3 === 0) {
+            console.log('FizzBuzz');
+        }
+    }
+}
+logNumbers(1, 15);
+
 // JavaScript2
 
 /* 3. Create a function, named toNumbers, that:
@@ -54,6 +77,16 @@
 
       Use the following array: const letters = ['a', 'b', 'c', 'd'];
 */
+
+function toNumbers(str) {
+    const arr = [];
+    str.map((letter, index) => {
+        arr.push(index);
+    });
+    console.log(arr);
+}
+const letters = ['a', 'b', 'c', 'd'];
+toNumbers(letters);
 
 /* 4. Create a function, called injectBooksToDOM, that:
       - Takes 1 argument: an array of objects
@@ -80,6 +113,30 @@
       ];
 */
 
+function injectBooksToDOM(books) {
+    let root = document.getElementById('root');
+    books.forEach(book => {
+        let ul = document.createElement('ul');
+        let li = document.createElement('li');
+        li.textContent = book.bookName;
+        root.append(ul);
+        ul.appendChild(li);
+    });
+}
+
+const books = [{
+        bookName: "The Nature of Software Development",
+        author: "Ron Jeffries",
+        coverURL: "https://cdn-images-1.medium.com/max/1200/1*CQRh-pFTZ97ReXogbefleQ.png"
+    },
+    {
+        bookName: "Clean Code",
+        author: "Robert Cecil Martin",
+        coverURL: "https://images-na.ssl-images-amazon.com/images/I/515iEcDr1GL._SX258_BO1,204,203,200_.jpg"
+    }
+];
+injectBooksToDOM(books);
+
 /*
 5. What's the output for this snippet? Is the output deterministic (always the same) or might it depend on the browser
 we run this in? 
@@ -103,4 +160,13 @@ function test() {
     console.log('six');
 }
 test(); // ?
+*/
+/*
+Answer: console.log('six') and console.log('one') are printed first because
+they are outside the scope of the setTimeout,
+and then console.log('four') and console.log('two') are printed, 
+they  are the second in the call stack.
+the console.log('five') and console.log('three') will be the last printed consoles.
+because they are the last in the call stack, 
+and they have to wait 1 second to be executed
 */
